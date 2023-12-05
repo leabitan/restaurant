@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Plat à emporter{% endblock %}
+
+{% block body %}
+	<style>
+
+
+		body {
+	
+   		background: url('/images/fondFruitsClair.png') no-repeat center center fixed;
+    	background-size: cover;
+    	background-color: rgba(240, 240, 240, 0.2); /* Couleur de fond avec une transparence à 80% */
+		}
+
+    </style>
+
+	
+
+	<div class="blockProduct">
+			<h1 align="center" class="mb-5">Nos plats à emporter</h1>
+
+		<div class="container justify-content">
+			<div class="d-flex justify-content-center">
+			<div class="productMenuList"><a class="lienCategorie" aria-current="page" href="{{ path('app_view_product') }}">Tous</a></div>
+			<div class="productMenuList"><a class="lienCategorie" aria-current="page" href="{{ path('app_view_product', {'categorie_id': 1}) }}">Entrée</a></div>
+			<div class="productMenuList"><a class="lienCategorie" aria-current="page" href="{{ path('app_view_product', {'categorie_id': 2}) }}">Plat</a></div>
+			<div class="productMenuList"><a class="lienCategorie" aria-current="page" href="{{ path('app_view_product', {'categorie_id': 3}) }}">Dessert</a></div>
+			</div>							
+		</div>
+
+		<div class="container">
+			<div class="row">
+				{% for product in products %}
+				<div class="col-4 d-sm-flex">
+					<div class="card mb-3">
+                      <img class="card-img-top" src="/images/plat1.png" alt="Card image cap">
+						<div class="card-body" align="center">
+							<h4 class="card-title">{{ product.nameproduct }}</h4>
+							<p class="card-text">{{ product.description }}</p>
+							<p class="card-price">{{ product.price }}€</p>
+							{# <form action="" method="POST"> #}
+								<button class="btn btn-dark" type="submit"><a href="{{ path('cart_add', {id: product.id}) }}" class="text-white bg-dark text-decoration-none add-to-cart-link" >Ajouter au panier</a></button>
+							{# </form> #}
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

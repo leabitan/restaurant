@@ -1,0 +1,33 @@
+.navbar {
+    /* background-color: white !important; */
+    background: rgba(0, 0, 0, 0.7) !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+
+    /* Pour aligner les éléments au début et à la fin */
+}
+
+
+.navbar ul li a {
+
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Marcellus', serif;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.3vw;
+    /* color: red !important; */
+}
+
+.navbar-nav {
+    margin-right: 5%;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    z-index: 2;
+}
