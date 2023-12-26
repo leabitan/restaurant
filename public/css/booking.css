@@ -1,0 +1,51 @@
+.containerBooking {
+    margin-top: 6%;
+
+}
+
+.containerBooking h1 {
+    padding-bottom: 3%;
+    font-weight: bold;
+}
+
+.labelBooking {
+    font-weight: bold;
+
+}
+
+.form-group {
+    margin-bottom: 15px;
+    /* Ajustez la valeur selon vos préférences */
+}
+
+.buttonBooking {
+
+    background-color: #998000;
+    border: none !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    /* Ombre légère */
+    width: 15vw !important;
+    text-align: center;
+
+}
+
+
+.buttonBooking:hover {
+    background-color: #ffd500;
+    /* Couleur de fond verte au survol */
+    color: #000000;
+    /* Changement de couleur du texte en blanc */
+}
+
+.buttonBookingClass {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* liste des réservation */
+.bookingView {
+    margin-top: 7%;
+
+}

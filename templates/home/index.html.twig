@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<div id="slider">
+    <img class="slider-img" alt="" src="/images/slider.png" />
+
+    <div class="card-slider">
+      <div class="child-card">
+        <div class="button-reserver">
+           <input class="reserver" type="button" onclick="window.location='{{ path('app_booking_new') }}';" value="Reserver" />
+        </div>
+
+        <div id="button-commander">
+          <input class="commander" type="button" onclick="window.location='{{ path('app_view_product') }}';" value="commander" />
+        </div>
+      </div>
+    </div>
+
+    <div class="texte-slider">
+
+      <img class="logotexte" alt="" src="/images/logo.png" />
+      <p>cuisine française traditionnelle revisitée et patisserie maison</p>
+
+    </div>
+
+  </div>
+
+
+  <div class="restaurant">
+    <div class="restaurant1">
+      <div class="restaurant1-1">
+        <p class="r-titre">notre restaurant</p>
+      </div>
+      <div class="ligne"></div>
+      <div class="restaurant1-2">
+        <p class="r-texte">Entre amis ou pour un repas d’affaires, dans une ambiance feutrée et
+          élégante, son comptoir invite au partage.Une façon de se réunir
+          autour d’un verre et quelques mises en bouche avant de dîner, face à
+          notre cave et à nos grands crus en ordre de bataille.</p>
+      </div>
+      <div class="restaurant1-3">
+        <p class="r-action">Réserver en ligne</p>
+      </div>
+    </div>
+
+    <div class="restaurant2">
+      <img class="restaurant-img" src="/images/plat1.png">
+    </div>
+
+    <div class="restaurant3">
+      <img class="restaurant-img" src="/images/plat2.png">
+    </div>
+
+    <div class="restaurant4">
+      <div class="restaurant1-1">
+        <p class="r-titre">notre carte</p>
+      </div>
+      <div class="ligne"></div>
+      <div class="restaurant1-2">
+        <p class="r-texte">Notre carte est composée uniquement de produits de saison.
+          Tous les plats sont fait maison.
+          Nous vous invitons à découvrir nos plats en consultant la carte.</p>
+      </div>
+      <div class="restaurant1-3">
+        <p class="r-action">Découvrir la carte</p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

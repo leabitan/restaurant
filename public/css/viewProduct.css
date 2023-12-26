@@ -1,0 +1,60 @@
+.blockProduct {
+    margin-top: 10%;
+}
+
+.productMenuList {
+    margin-bottom: 3%;
+    background-color: #998000;
+    width: 10%;
+    text-align: center;
+    color: rgb(246, 246, 246) !important;
+    border: 1px solid #ffffff;
+    /* Couleur et épaisseur de la bordure */
+
+    /* Espace intérieur pour améliorer l'apparence */
+    font-size: 1.5vw;
+
+}
+
+.add-to-cart-link {
+    font-size: 1.4vh;
+    font-size: 1.6vw;
+    /* Ajustez la taille du texte selon vos besoins */
+}
+
+.productMenuList a {
+    color: rgb(246, 246, 246) !important;
+    text-decoration: none;
+
+}
+
+.card-title {
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 2.5vw;
+    /* Optionnel: ajoutez des points de suspension pour indiquer qu'il y a plus de texte */
+}
+
+/* .container button {
+    background-color: #998000 !important;
+} */
+
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* Limiter à 3 lignes */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Optionnel: ajoutez des points de suspension pour indiquer qu'il y a plus de texte */
+    font-size: 2vw;
+}
+
+.card-price {
+    font-weight: 700 !important;
+    font-size: 2vw;
+    color: #998000;
+
+}

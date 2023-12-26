@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Product{% endblock %}
+
+{% block body %}
+    <h1>Modifier un produit</h1>
+
+    {{ form_start(form) }}
+
+    {{ form_widget(form) }}
+
+     {{ form_end(form) }} 
+
+     
+        <button class="btn btn-secondary"><a href="{{ path('app_stock_new') }}" class='text-white'>Modifier un stock</a></button>
+
+    
+
+    <div class="d-flex justify-content-start">
+    {{ include('product/_delete_form.html.twig') }}
+    <a href="{{ path('app_product') }}" class="btn btn-secondary" >Retour</a>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+

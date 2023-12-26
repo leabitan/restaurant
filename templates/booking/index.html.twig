@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réservations{% endblock %}
+
+{% block body %}
+
+<div class="bookingView">
+
+    <h1>Liste des réservation</h1>
+
+    <div class="jumbotron">
+        <div class="container">
+
+        {{ form_start(form) }}
+        {{ form_end(form) }}
+
+        </div>
+    </div>
+
+    {% if totalCouverts is not null %}
+        <div class="alert alert-info mt-4">
+            Total des couverts pour la période sélectionnée : {{ totalCouverts }}
+        </div>
+    {% endif %}
+
+        {% if totalConfirmed is not null %}
+        <div class="alert alert-info mt-4">
+            Total des couverts CONFIRME pour la période sélectionnée : {{ totalConfirmed }}
+        </div>
+    {% endif %}
+
+ {# nombre de couverts #}
+
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Date_booking</th>
+                <th>Diner</th>
+                <th>PeopleNumber</th>
+                <th>BookingConfirmed</th>
+                <th>Hour_booking</th>
+                <th>Name_booking</th>
+                {# <th>Phone_booking</th>
+                <th>Email_booking</th> #}
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for booking in bookings %}
+            <tr>
+                {# <td>{{ booking.id }}</td> #}
+                <td>{{ booking.dateBooking ? booking.dateBooking|date('Y-m-d') : '' }}</td>
+                <td>{{ booking.diner }}</td>
+                <td>{{ booking.peopleNumber }}</td>
+                <td>{{ booking.bookingConfirmed ? 'Yes' : 'No' }}</td>
+                <td>{{ booking.hourBooking ? booking.hourBooking|date('H:i:s') : '' }}</td>
+                <td>{{ booking.nameBooking }}</td>
+                {# <td>{{ booking.phoneBooking }}</td>
+                <td>{{ booking.emailBooking }}</td> #}
+                <td>
+                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">show</a>
+                    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_booking_new') }}">Create new</a>
+
+</div>
+{% endblock %}

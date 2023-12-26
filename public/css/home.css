@@ -1,0 +1,260 @@
+/* Slider */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+ß small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Marcellus', serif;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.slider {
+    width: 100%;
+    height: 100vh;
+    margin-bottom: 5%;
+}
+
+.slider-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* slider */
+
+#slider {
+    position: relative;
+}
+
+/* le parent est en relatif et les enfants sont en absolus pour pouvoir être placé à la position souhaité dans le cadre parent*/
+
+#slider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+
+}
+
+.card-slider {
+    position: absolute;
+    left: 0;
+    bottom: 30%;
+    width: 100%;
+    z-index: 1;
+}
+
+.child-card {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.texte-slider {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    z-index: 1;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    text-align: center;
+}
+
+.texte-slider p {
+    font-size: 1.7vw;
+    color: white;
+    text-transform: uppercase;
+}
+
+.logotexte {
+    width: 25%;
+    margin: auto;
+    display: block;
+
+}
+
+.reserver {
+    width: 12vw;
+    height: 6vh;
+    font-size: 1.1vw;
+    text-transform: uppercase;
+    font-family: Montserrat;
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    border: 1px solid white;
+
+}
+
+.reserver:hover {
+    border-width: 3px;
+    /* Augmentation de la bordure au survol */
+}
+
+.commander {
+    width: 12vw;
+    height: 6vh;
+    font-size: 1.1vw;
+    text-transform: uppercase;
+    font-family: Montserrat;
+    border-radius: 8px;
+    background-color: #ffd500;
+    color: rgb(6, 6, 6);
+    border: none;
+
+}
+
+.commander:hover {
+    font-weight: 800;
+}
+
+/* restaurant */
+.restaurant {
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.restaurant1,
+.restaurant4 {
+    padding: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+
+.restaurant1-1,
+.restaurant1-2,
+.restaurant1-3 {
+    display: flex;
+    justify-content: center;
+}
+
+.restaurant2,
+.restaurant3 {
+    padding: 4%;
+}
+
+.restaurant-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.r-titre {
+    text-transform: uppercase;
+    font-size: 2.3vw;
+    font-weight: 700;
+    margin-bottom: 1%;
+}
+
+.r-texte {
+    font-size: 1.1vw;
+    text-align: center;
+}
+
+.r-action {
+    margin-top: 2%;
+    font-size: 1.1vw;
+
+}
+
+.ligne {
+    border-top: 3px solid #ffd500;
+    /* Épaisseur, style et couleur de la ligne */
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-bottom: 3%;
+}
