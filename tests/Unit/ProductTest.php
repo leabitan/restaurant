@@ -72,20 +72,20 @@ class ProductTest extends KernelTestCase
     //     $this->assertGreaterThan(0, count($errors));
     // }
 
-//     public function testProductCategorie()
-//     {
+    //     public function testProductCategorie()
+    //     {
 
-//         self::bootKernel();
-//         $container = static::getContainer();
+    //         self::bootKernel();
+    //         $container = static::getContainer();
 
-//         $product = $this->getEntity();
+    //         $product = $this->getEntity();
 
-//         //On va chercher une categorie pour produit
-//         $categorie = $container->get('doctrine.orm.entity_manager')->find(Category::class, 1);
-//         $product->setCategory($categorie);
+    //         //On va chercher une categorie pour produit
+    //         $categorie = $container->get('doctrine.orm.entity_manager')->find(Category::class, 1);
+    //         $product->setCategory($categorie);
 
-//         $errors = $container->get('validator')->validate($product);
+    //         $errors = $container->get('validator')->validate($product);
 
-//         $this->assertCount(0, $errors);
-//     }
-// }
+    //         $this->assertCount(0, $errors);
+    //     }
+}
