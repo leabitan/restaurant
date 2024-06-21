@@ -1,50 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Booking{% endblock %}
+{% block title %}Booking Details{% endblock %}
 
 {% block body %}
-    <h1>Booking</h1>
+<div class="container mt-5">
+    <h1 class="mb-4 text-center" style="margin-top: 15vh;margin-bottom: 15vh;">Details de la réservation</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ booking.id }}</td>
-            </tr>
-            <tr>
-                <th>Date_booking</th>
-                <td>{{ booking.dateBooking ? booking.dateBooking|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>PeopleNumber</th>
-                <td>{{ booking.peopleNumber }}</td>
-            </tr>
-            <tr>
-                <th>BookingConfirmed</th>
-                <td>{{ booking.bookingConfirmed ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>Hour_booking</th>
-                <td>{{ booking.hourBooking ? booking.hourBooking|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Name_booking</th>
-                <td>{{ booking.nameBooking }}</td>
-            </tr>
-            <tr>
-                <th>Phone_booking</th>
-                <td>{{ booking.phoneBooking }}</td>
-            </tr>
-            <tr>
-                <th>Email_booking</th>
-                <td>{{ booking.emailBooking }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th scope="row">Id</th>
+                        <td>{{ booking.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date de la réservation</th>
+                        <td>{{ booking.dateBooking ? booking.dateBooking|date('Y-m-d') : 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nombre de couverts</th>
+                        <td>{{ booking.peopleNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Réservation confirmée</th>
+                        <td>{{ booking.bookingConfirmed ? 'Oui' : 'Non' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Heure réservation</th>
+                        <td>{{ booking.hourBooking ? booking.hourBooking|date('H:i:s') : 'N/A' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nom</th>
+                        <td>{{ booking.nameBooking }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Téléphone</th>
+                        <td>{{ booking.phoneBooking }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td>{{ booking.emailBooking }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Commentaires</th>
+                        <td>{{ booking.comments }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <a href="{{ path('app_booking_index') }}">back to list</a>
-
-    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
-
-    {{ include('booking/_delete_form.html.twig') }}
+    <div class="text-center mt-4">
+        <a href="{{ path('app_booking_index') }}" class="btn btn-secondary" style="background-color: #000000; color: #ffffff; border:none;">retour à la liste</a>
+        <a href="{{ path('app_booking_edit', {'id': booking.id}) }}" class="btn btn-warning">Editer</a>
+        {{ include('booking/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

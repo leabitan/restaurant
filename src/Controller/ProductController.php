@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-// #[IsGranted('ROLE_EMPLOYEE')]
+#[IsGranted('ROLE_EMPLOYEE')]
 #[Route('/product')]
 class ProductController extends AbstractController
 {
@@ -44,33 +44,34 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('/nouveau', 'product.new', methods: ['GET', 'POST'])]
-    public function new(
-        Request $request,
-        EntityManagerInterface $manager
-    ): Response {
-        $product = new product();
+    #[Route('/nouveau', name: 'product.new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $manager): Response
+    {
+        $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            // Cette ligne récupère les catégories sélectionnées et les associe au produit
             $product = $form->getData();
+            foreach ($product->getCategories() as $category) {
+                $category->addProduct($product);
+            }
+
             $manager->persist($product);
             $manager->flush();
 
-            // message flash
+            $this->addFlash('success', 'Le produit a été créé avec succès');
 
-            $this->addFlash(
-                'success',
-                'Le plat a été créé avec succès'
-            );
             return $this->redirectToRoute('app_product', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('product/new.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
+
+
     #[Route('/{id}/edit', name: 'product.edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Product $product, EntityManagerInterface $entityManager): Response
     {
@@ -78,14 +79,31 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Synchroniser les catégories
+            $selectedCategories = $form->get('categories')->getData();
+
+            // Supprimer les catégories non sélectionnées
+            foreach ($product->getCategories() as $category) {
+                if (!$selectedCategories->contains($category)) {
+                    $product->removeCategory($category);
+                }
+            }
+
+            // Ajouter les nouvelles catégories sélectionnées
+            foreach ($selectedCategories as $category) {
+                if (!$product->getCategories()->contains($category)) {
+                    $product->addCategory($category);
+                }
+            }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_product', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('product/edit.html.twig', [
+        return $this->render('product/edit.html.twig', [
             'product' => $product,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

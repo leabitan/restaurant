@@ -146,7 +146,7 @@ video {
     text-align: center;
 }
 
-.texte-slider p {
+.texte-slider h1 {
     font-size: 1.7vw;
     color: white;
     text-transform: uppercase;
@@ -257,4 +257,20 @@ video {
     margin-left: 30%;
     margin-right: 30%;
     margin-bottom: 3%;
+}
+
+/* 
+media querry */
+
+/* Media query pour les écrans ayant une largeur maximale de 768 pixels */
+@media screen and (max-width: 768px) {
+    .commander {
+        height: 2vh;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .reserver {
+        height: 2vh;
+    }
 }

@@ -26,11 +26,16 @@
             {# Display error message if login fails #}
                 {% if error %}
                     <div class="alert alert-danger" role="alert">
-                        {% if error.messageKey == 'Bad credentials' %}
-                            Les informations d'identification fournies sont incorrectes.
-                        {% else %}
-                            {{ error.messageKey|trans(error.messageData, 'security') }}
-                        {% endif %}
+                       {% if error.messageKey == 'Invalid credentials' %}
+                        Les informations d'identification fournies sont incorrectes.
+                    {% elseif error.messageKey == 'Account is disabled' %}
+                        Votre compte a été désactivé.
+                    {% elseif error.messageKey == 'Account is locked' %}
+                        Votre compte est verrouillé.
+                    {% else %}
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    {% endif %}
+
                     </div>
                 {% endif %}
             <form action="{{ path('app_login') }}" method="post">

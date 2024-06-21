@@ -40,11 +40,11 @@
           {% endif %}  #}
 
 
-          {# {% if app.user and is_granted('ROLE_EMPLOYEE') %} #}
+          {% if app.user and is_granted('ROLE_EMPLOYEE') %}
           <li class="nav-item">
             <a class="nav-link active text-light" aria-current="page" href="{{ path('app_admin') }}">Admin</a>
           </li>
-          {# {% endif %}  #}
+          {% endif %} 
 
 
           <li class="nav-item">

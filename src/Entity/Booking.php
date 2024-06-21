@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BookingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 class Booking
@@ -18,6 +19,7 @@ class Booking
     private ?\DateTimeInterface $date_booking = null;
 
     #[ORM\Column]
+    #[Assert\NotNull]
     private ?int $peopleNumber = null;
 
     #[ORM\Column(nullable: true)]
@@ -27,18 +29,24 @@ class Booking
     private ?\DateTimeInterface $hour_booking = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
     private ?string $name_booking = null;
 
     #[ORM\Column(length: 20)]
     private ?string $phone_booking = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull]
+    #[Assert\Email(
+        message: 'Email {{ value }} non valide.',
+    )]
     private ?string $email_booking = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $comments = null;
 
     #[ORM\Column]
+    #[Assert\NotNull]
     private ?bool $diner = null;
 
 

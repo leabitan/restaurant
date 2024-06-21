@@ -36,7 +36,7 @@ class CartController extends AbstractController
             ];
             $total += $product->getPrice() * $quantity;
         }
-
+        //On redirige vers la page du panier
         return $this->render('cart/index.html.twig', compact('data', 'total'));
     }
 

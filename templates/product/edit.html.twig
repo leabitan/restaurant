@@ -1,26 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Product{% endblock %}
+{% block title %}Modifier un produit{% endblock %}
 
 {% block body %}
-    <h1>Modifier un produit</h1>
+<div class="container" style="margin-top: 15vh;margin-bottom: 15vh;">
+
+     <h1 class="mb-5 text-center">Modifier un produit</h1>
 
     {{ form_start(form) }}
 
-    {{ form_widget(form) }}
+          <div class="form-group">
+            {{ form_label(form.name_product) }}
+            {{ form_widget(form.name_product) }}
+            <div class="form-error">
+                {{ form_errors(form.name_product) }}
+            </div>
+        </div>
 
-     {{ form_end(form) }} 
+        <div class="form-group">
+            {{ form_label(form.description) }}
+            {{ form_widget(form.description) }}
+            <div class="form-error">
+                {{ form_errors(form.description) }}
+            </div>
+        </div>
 
-     
-        <button class="btn btn-secondary"><a href="{{ path('app_stock_new') }}" class='text-white'>Modifier un stock</a></button>
+        <div class="form-group">
+            {{ form_label(form.price) }}
+            {{ form_widget(form.price) }}
+            <div class="form-error">
+                {{ form_errors(form.price) }}
+            </div>
+        </div>
 
-    
+        <div class="form-group">
+            {{ form_label(form.active_product) }}
+            {{ form_widget(form.active_product) }}
+            <div class="form-error">
+                {{ form_errors(form.active_product) }}
+            </div>
+        </div>
 
-    <div class="d-flex justify-content-start">
-    {{ include('product/_delete_form.html.twig') }}
-    <a href="{{ path('app_product') }}" class="btn btn-secondary" >Retour</a>
-    </div>
+        <div class="form-group">
+            {{ form_label(form.categories) }}
+            {{ form_widget(form.categories) }}
+            <div class="form-error">
+                {{ form_errors(form.categories) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.submit) }}
+        </div>
+
     {{ form_end(form) }}
+
+    <div class="d-flex justify-content-start mt-4">
+        <form method="post" action="{{ path('product.delete', {'id': product.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+            <button class="btn btn-danger">Supprimer</button>
+        </form>
+        <a href="{{ path('app_product') }}" class="btn btn-secondary ml-2">Retour</a>
+    </div>
+
+    <div class="d-flex justify-content-start mt-4">
+        <a href="{{ path('app_stock_new') }}" class="btn btn-secondary">Modifier un stock</a>
+    </div>
+</div>
 {% endblock %}
-
-

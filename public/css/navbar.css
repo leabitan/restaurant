@@ -18,6 +18,9 @@
     /* Pour aligner les éléments au début et à la fin */
 }
 
+.dropdown-item:active {
+    background: none !important;
+}
 
 .navbar ul li a {
 

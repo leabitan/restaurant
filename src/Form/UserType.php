@@ -55,7 +55,8 @@ class UserType extends AbstractType
             ->add('phone')
             ->add('street')
             ->add('postalCode')
-            ->add('cart');
+            // ->add('cart')
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

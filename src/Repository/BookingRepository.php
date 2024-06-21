@@ -23,7 +23,9 @@ class BookingRepository extends ServiceEntityRepository
     }
 
     // Dans BookingRepository.php
-
+    /**
+     * @return Booking[] Returns an array of bookinh objects
+     */
     public function findByDateRange(?DateTimeInterface $dateMin, ?DateTimeInterface $dateMax)
     {
         $queryBuilder = $this->createQueryBuilder('b')
