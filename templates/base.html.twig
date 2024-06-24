@@ -43,7 +43,9 @@
   
         {% endblock %}
       
-    {% include 'layout/footer.html.twig' %}
+        {% if app.request.attributes.get('_route') in ['app_home', 'app_view_product'] %}
+            {% include 'layout/footer.html.twig' %}
+        {% endif %}
 
     </body>
 </html>

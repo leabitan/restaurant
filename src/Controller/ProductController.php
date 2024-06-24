@@ -52,10 +52,31 @@ class ProductController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            // Associe le stock au produit
+            $stock = $product->getStock();
+            if ($stock) {
+                $stock->setProduct($product);
+            }
             // Cette ligne récupère les catégories sélectionnées et les associe au produit
             $product = $form->getData();
             foreach ($product->getCategories() as $category) {
                 $category->addProduct($product);
+            }
+
+            // Gestion du fichier image
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = uniqid() . '.' . $imageFile->guessExtension();
+
+                // Déplace le fichier dans le répertoire public/images
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+
+                // Met à jour la propriété 'image' pour stocker le chemin de l'image
+                $product->setImage($newFilename);
             }
 
             $manager->persist($product);
@@ -95,7 +116,11 @@ class ProductController extends AbstractController
                     $product->addCategory($category);
                 }
             }
-
+            // Associe le stock au produit
+            $stock = $product->getStock();
+            if ($stock) {
+                $stock->setProduct($product);
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('app_product', [], Response::HTTP_SEE_OTHER);

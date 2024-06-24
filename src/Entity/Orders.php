@@ -30,6 +30,7 @@ class Orders
     private Collection $ordersDetails;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: true, onDelete: "SET NULL")]
     private ?User $user = null;
 
 
@@ -51,7 +52,7 @@ class Orders
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
         return $this;

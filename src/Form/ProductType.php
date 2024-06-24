@@ -8,8 +8,11 @@ use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -92,6 +95,25 @@ class ProductType extends AbstractType
                 ],
                 'multiple' => true, // Permet de sélectionner plusieurs catégories
                 'expanded' => false, // Affiche les catégories sous forme de menu déroulant
+            ])
+            ->add('stock', StockType::class, [
+                'label' => false,
+                'required' => false,
+            ])
+            ->add('image', FileType::class, [
+                'label' => 'Product Image (PNG, JPG)',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '5M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image file (JPEG, PNG)',
+                    ])
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'attr' => [

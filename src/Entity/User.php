@@ -20,6 +20,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+
+
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
@@ -61,7 +63,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 5, nullable: true)]
     private ?string $postalCode = null;
 
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Orders::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Orders::class, cascade: ['persist', 'remove'])]
     private Collection $orders;
 
     // #[ORM\OneToOne(cascade: ['persist', 'remove'])]

@@ -3,7 +3,8 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+<div class="container" style="margin-left:2vw;margin-right:2vw; margin-top: 15vh;margin-bottom: 15vh;">
+    <h1>Détail utilisateur</h1>
 
     <table class="table">
         <tbody>
@@ -20,11 +21,11 @@
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
             </tr>
             <tr>
-                <th>Password</th>
+                <th>Mot de passe</th>
                 <td>{{ user.password }}</td>
             </tr>
             <tr>
-                <th>InscriptionDate</th>
+                <th>Date d'inscription</th>
                 <td>{{ user.inscriptionDate ? user.inscriptionDate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
@@ -32,35 +33,36 @@
                 <td>{{ user.matricule }}</td>
             </tr>
             <tr>
-                <th>Firstname</th>
+                <th>Prénom</th>
                 <td>{{ user.firstname }}</td>
             </tr>
             <tr>
-                <th>Lastname</th>
+                <th>Nom</th>
                 <td>{{ user.lastname }}</td>
             </tr>
             <tr>
-                <th>Active_user</th>
+                <th>utilisateur actif</th>
                 <td>{{ user.activeUser ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>Téléphone</th>
                 <td>{{ user.phone }}</td>
             </tr>
             <tr>
-                <th>Street</th>
+                <th>Rue</th>
                 <td>{{ user.street }}</td>
             </tr>
             <tr>
-                <th>PostalCode</th>
+                <th>Code postal</th>
                 <td>{{ user.postalCode }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
-
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+<div class="btn-group" role="group" >
+    <a href="{{ path('app_user_index') }}" class="btn btn-dark">Retour</a>
+</div>
 
     {{ include('user/_delete_form.html.twig') }}
+</div>
 {% endblock %}

@@ -6,10 +6,12 @@ use App\Repository\BookingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Classes\BookingValidator;
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 class Booking
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -25,8 +27,13 @@ class Booking
     #[ORM\Column(nullable: true)]
     private ?bool $bookingConfirmed = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    // #[ORM\Column(type: Types::TIME_MUTABLE)]
+
+
+    #[ORM\Column(type: 'time')]
+    #[Assert\Callback([BookingValidator::class, 'validateBookingHour'])]
     private ?\DateTimeInterface $hour_booking = null;
+
 
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank]
