@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Orders;
 use App\Entity\User;
+use App\Entity\Orders;
 use App\Entity\OrdersDetails;
 use App\Repository\UserRepository;
+use App\Repository\OrdersRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
@@ -80,6 +81,15 @@ class OrdersController extends AbstractController
             'orderDetails' => $order->getOrdersDetails(),
             'totalQuantity' => $totalQuantity,
             'totalPrice' => $totalPrice,
+        ]);
+    }
+    #[Route('/liste', name: 'list')]
+    public function list(OrdersRepository $ordersRepository): Response
+    {
+        $orders = $ordersRepository->findAll();
+
+        return $this->render('orders/list.html.twig', [
+            'orders' => $orders,
         ]);
     }
 }

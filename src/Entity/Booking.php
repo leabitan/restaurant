@@ -40,6 +40,7 @@ class Booking
     private ?string $name_booking = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotNull]
     private ?string $phone_booking = null;
 
     #[ORM\Column(length: 255)]
