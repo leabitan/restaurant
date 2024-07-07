@@ -2,7 +2,7 @@
     margin-top: 10%;
 }
 
-/* 
+
 .productMenuList {
     margin-bottom: 3%;
     background-color: #ffd500;
@@ -13,7 +13,7 @@
 
     font-size: 1.5vw;
 
-} */
+}
 
 .add-to-cart-link {
     font-size: 1.4vh;
@@ -21,11 +21,11 @@
     /* Ajustez la taille du texte selon vos besoins */
 }
 
-/* .productMenuList a {
+.productMenuList a {
     color: rgb(0, 0, 0) !important;
     text-decoration: none;
 
-} */
+}
 
 .card-title {
 
