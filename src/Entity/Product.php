@@ -36,8 +36,8 @@ class Product
     #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'product')]
     private Collection $categories;
 
-    #[ORM\ManyToMany(targetEntity: Cart::class, inversedBy: 'products')]
-    private Collection $cart;
+    // #[ORM\ManyToMany(targetEntity: Cart::class, inversedBy: 'products')]
+    // private Collection $cart;
 
     #[ORM\OneToOne(inversedBy: 'product', cascade: ['persist', 'remove'])]
     private ?Stock $stock = null;
@@ -45,7 +45,7 @@ class Product
     public function __construct()
     {
         $this->categories = new ArrayCollection();
-        $this->cart = new ArrayCollection();
+        // $this->cart = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -148,29 +148,29 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection<int, Cart>
-     */
-    public function getCart(): Collection
-    {
-        return $this->cart;
-    }
+    // /**
+    //  * @return Collection<int, Cart>
+    //  */
+    // public function getCart(): Collection
+    // {
+    //     return $this->cart;
+    // }
 
-    public function addCart(Cart $cart): static
-    {
-        if (!$this->cart->contains($cart)) {
-            $this->cart->add($cart);
-        }
+    // public function addCart(Cart $cart): static
+    // {
+    //     if (!$this->cart->contains($cart)) {
+    //         $this->cart->add($cart);
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    public function removeCart(Cart $cart): static
-    {
-        $this->cart->removeElement($cart);
+    // public function removeCart(Cart $cart): static
+    // {
+    //     $this->cart->removeElement($cart);
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getStock(): ?Stock
     {

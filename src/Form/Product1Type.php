@@ -19,35 +19,35 @@ class Product1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name_product', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control', //bootswatch
-                    'minlenght' => '2',
-                    'maxlength' => '50'
-                ],
-                'label' => 'Nom du produit',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ],
-                'constraints' => [
-                    new Assert\Length(
-                        min: 2,
-                        max: 50,
-                        minMessage: 'Your first name must be at least {{ limit }} characters long',
-                        maxMessage: 'Your first name cannot be longer than {{ limit }} characters',
-                    ),
-                    new Assert\NotBlank(),
-                ]
-            ])
-            ->add('description', TextareaType::class, [
-                'attr' => [
-                    'class' => 'form-control', //bootswatch
-                ],
-                'label' => 'Description du produit',
-                'label_attr' => [
-                    'class' => 'form-label mt-4'
-                ]
-            ])
+            // ->add('name_product', TextType::class, [
+            //     'attr' => [
+            //         'class' => 'form-control', //bootswatch
+            //         'minlenght' => '2',
+            //         'maxlength' => '50'
+            //     ],
+            //     'label' => 'Nom du produit',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //     ],
+            //     'constraints' => [
+            //         new Assert\Length(
+            //             min: 2,
+            //             max: 50,
+            //             minMessage: 'Your first name must be at least {{ limit }} characters long',
+            //             maxMessage: 'Your first name cannot be longer than {{ limit }} characters',
+            //         ),
+            //         new Assert\NotBlank(),
+            //     ]
+            // ])
+            // ->add('description', TextareaType::class, [
+            //     'attr' => [
+            //         'class' => 'form-control', //bootswatch
+            //     ],
+            //     'label' => 'Description du produit',
+            //     'label_attr' => [
+            //         'class' => 'form-label mt-4'
+            //     ]
+            // ])
 
             ->add('price', MoneyType::class, [
                 'attr' => [

@@ -1,100 +1,99 @@
-{% extends 'base.html.twig' %}
+    {% extends 'base.html.twig' %}
 
-{% block title %}Plats à emporter{% endblock %}
+  {% block title %}Plats{% endblock %}
 
-{% block body %}
-<div class="container mt-4">
+  {% block body %}
+  <div class="container" style="margin-top: 15vh;margin-bottom: 15vh;">
 
-  {# conditionnelle #}
-  {% if not product.items is same as ([]) %}
+    {# conditionnelle #}
+    {% if not product.items is same as ([]) %}
 
-    <h1>Plats à emporter</h1>
+        <h1 class="mb-5 text-center">Liste des plats à emporter</h1>
 
-    <div class="count mt-4">
-      <h4>Il y a 
-      {{ product.getTotalItemCount }}
-      plats à la carte à emporter
-      </h4>    
-    </div>
-
-    <div class="count mt-4 mb-4">
-    <a href="{{ path('product.new') }}" class="btn btn-success">Ajouter un produit</a>
-    </div>
-
-    <table class="table table-hover">
-      <thead>
-        <tr>
-            <th scope="col">Numéro</th>
-            <th scope="col">Image</th>
-            <th scope="col">Nom du produit</th>
-            <th scope="col">Description</th>
-            <th scope="col">Prix</th>
-            <th scope="col">Qtés préparées</th>
-            <th scope="col">Qtés réelles</th>
-            <th scope="col">Qtés vendues</th>
-            <th scope="col">Produit actif</th>
-            <th scope="col">Catégorie</th>
-            <th scope="col">actions</th>
-
-        </tr>
-      </thead>
-      <tbody>
-      
-      {% for product in product %}
-        <tr class="table-dark">
-          <th scope="row">{{ product.id }}</th>
-          <td>{{ product.image }}</td>
-          
-          <td>{{ product.nameproduct }}</td>
-          <td>{{ product.description }}</td>
-          <td>{{ product.price }}€</td>
+      <div class="count mt-4">
+        <h4>Il y a 
+        {{ product.getTotalItemCount }}
+        plats à la carte à emporter
+        </h4>    
+      </div>
 
 
-          <td>
-          {% if product.stock %}
-            {{ product.stock.getQuantityPrepared() }}
-          {% endif %}
-          </td>
-       
-          <td>
-          {% if product.stock %}
-            {{ product.stock.getQuantityReal() }}
-          {% endif %}
-          </td>
+      <div class="count mt-4 mb-4">
+      <a href="{{ path('product.new') }}" class="btn btn-success">Ajouter un produit</a>
+      </div>
 
-          <td>
-          {% if product.stock %}
-          {{ product.stock.getQuantitySold() }}
-          {% endif %}
-          </td>
-          
-          <td>{{ product.activeproduct }}</td>
-          <td>
-              {% for categorie in product.categories %}
-               {{ categorie.getNameCategory() }}
-              {% endfor %}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+              <th scope="col">Numéro</th>
+              <th scope="col">Image</th>
+              <th scope="col">Nom du produit</th>
+              <th scope="col">Description</th>
+              <th scope="col">Prix</th>
+              <th scope="col">Qtés préparées</th>
+              <th scope="col">Qtés réelles</th>
+              <th scope="col">Qtés vendues</th>
+              <th scope="col">Produit actif</th>
+              <th scope="col">Catégorie</th>
+              <th scope="col">actions</th>
 
-          </td>
-          <td class="d-flex justify-content-around">
-          <a class="btn btn-warning" href="{{ path('product.edit', {'id': product.id}) }}">edit</a>
-          <form method="post" action="{{ path('product.delete', {'id': product.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer ce produit');">
-            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
-            <button class="btn btn-danger">Delete</button>
-          </form>
-                   
-          </td>
-        </tr>
-        {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+        
+        {% for product in product %}
+          <tr class="table-dark">
+            <th scope="row">{{ product.id }}</th>
+            <td>{{ product.image }}</td>
+            <td>{{ product.nameproduct }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }}€</td>
 
-      </tbody>
-    </table>
-    {# Ici on gère la pagination #}
-    <div class="d-flex justify-content-center">
-        {{ knp_pagination_render(product) }}
-    </div>
-  {% else %}
-    <h4>Il n'y a pas de produits</h4>
-  {% endif %}
 
-</div>
-{% endblock %}
+            <td>
+            {% if product.stock %}
+              {{ product.stock.getQuantityPrepared() }}
+            {% endif %}
+            </td>
+        
+            <td>
+            {% if product.stock %}
+              {{ product.stock.getQuantityReal() }}
+            {% endif %}
+            </td>
+
+            <td>
+            {% if product.stock %}
+            {{ product.stock.getQuantitySold() }}
+            {% endif %}
+            </td>
+            
+            <td>{{ product.activeproduct }}</td>
+            <td>
+                {% for categorie in product.categories %}
+                {{ categorie.getNameCategory() }}
+                {% endfor %}
+
+            <td class="d-flex justify-content-around">
+              <a style="color: #ffffff; font-style: italic; font-weight: bold; text-decoration: none;" href="{{ path('product.edit', {'id': product.id}) }}">edit</a>
+              <form method="post" action="{{ path('product.delete', {'id': product.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer ce produit');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                <button style="color: #ffffff; font-style: italic; font-weight: bold; background: none; border: none; text-decoration: none; cursor: pointer;" type="submit">Delete</button>
+              </form>
+            </td>
+
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+      {# Ici on gère la pagination #}
+      <div class="d-flex justify-content-center">
+          {{ knp_pagination_render(product) }}
+      </div>
+    {% else %}
+      <h4>Il n'y a pas de produits</h4>
+    {% endif %}
+
+  </div>
+  {% endblock %}

@@ -4,76 +4,86 @@
 
 {% block body %}
 
-<div class="bookingView">
+<div class="container" style="margin-top: 15vh;margin-bottom: 15vh;">
 
-    <h1>Liste des réservation</h1>
+    <h1 class="mb-5 text-center">Liste des réservations</h1>
 
     <div class="jumbotron">
-        <div class="container">
+            <div class="container">
+                {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-        {{ form_start(form) }}
-        {{ form_end(form) }}
+                <div class="form-group" style="border-color: #ffd500;">
+                    {{ form_label(form.dateMin, 'Date de début', {'label_attr': {'class': 'control-label'}}) }}
+                    {{ form_widget(form.dateMin, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.dateMin) }}
+                </div>
 
-        </div>
+                <div class="form-group">
+                    {{ form_label(form.dateMax, 'Date de fin', {'label_attr': {'class': 'control-label'}}) }}
+                    {{ form_widget(form.dateMax, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.dateMax) }}
+                </div>
+
+                <div class="form-group" style="display: flex; justify-content: center;">
+                    <button type="submit" class="btn btn-primary" style="background-color: #ffd500; color: rgb(6, 6, 6); border:none;">Rechercher</button>
+                </div>
+
+            {{ form_end(form, {'render_rest': false}) }}
+            </div>
     </div>
-
+    <div class="mb-5 text-center" style="font-weight: bold;">
     {% if totalCouverts is not null %}
-        <div class="alert alert-info mt-4">
+        <div  style="background-color:White; color: rgb(6, 6, 6); border:none ;">
             Total des couverts pour la période sélectionnée : {{ totalCouverts }}
         </div>
     {% endif %}
 
         {% if totalConfirmed is not null %}
-        <div class="alert alert-info mt-4">
+        <div  style="background-color:White; color: rgb(6, 6, 6); border:none ;">
             Total des couverts CONFIRME pour la période sélectionnée : {{ totalConfirmed }}
         </div>
     {% endif %}
-
+    </div>
  {# nombre de couverts #}
-
-
 
     <table class="table">
         <thead>
             <tr>
-                {# <th>Id</th> #}
-                <th>Date_booking</th>
-                <th>Diner</th>
-                <th>PeopleNumber</th>
-                <th>BookingConfirmed</th>
-                <th>Hour_booking</th>
-                <th>Name_booking</th>
-                {# <th>Phone_booking</th>
-                <th>Email_booking</th> #}
-                <th>actions</th>
+                <th scope="col">Date de réservation</th>
+                <th scope="col">Diner ou déjeuner</th>
+                <th scope="col">Nombre de personne</th>
+                <th scope="col">Confirmation réservation</th>
+                <th scope="col">Heure de réservation</th>
+                <th scope="col">Nom de réservation</th>
+                {# <th scope="col">Numéro de téléphone</th>
+                <th scope="col">Email de réservation</th> #}
             </tr>
         </thead>
+
         <tbody>
         {% for booking in bookings %}
-            <tr>
+            <tr  class="table-dark">
                 {# <td>{{ booking.id }}</td> #}
                 <td>{{ booking.dateBooking ? booking.dateBooking|date('Y-m-d') : '' }}</td>
-                <td>{{ booking.diner }}</td>
+                <td>{{ booking.diner ? 'Diner' : 'Déjeuner' }}</td>
                 <td>{{ booking.peopleNumber }}</td>
-                <td>{{ booking.bookingConfirmed ? 'Yes' : 'No' }}</td>
+                <td>{{ booking.bookingConfirmed ? 'Oui' : 'Non' }}</td>
                 <td>{{ booking.hourBooking ? booking.hourBooking|date('H:i:s') : '' }}</td>
                 <td>{{ booking.nameBooking }}</td>
                 {# <td>{{ booking.phoneBooking }}</td>
                 <td>{{ booking.emailBooking }}</td> #}
                 <td>
-                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">show</a>
-                    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
+                    <a style="color: #ffffff;#ffd500;font-style: italic;font-weight: bold;" href="{{ path('app_booking_show', {'id': booking.id}) }}">Détails</a>
+                    <a style="color: #ffffff;#ffd500;font-style: italic;font-weight: bold;" href="{{ path('app_booking_edit', {'id': booking.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Il n'y a pas de réservation</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_booking_new') }}">Create new</a>
-
+    <a href="{{ path('app_booking_new') }}" class="btn btn-primary" style="background-color: #ffd500; color: rgb(6, 6, 6); border:none ;">Create new</a>
 </div>
 {% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+
+<style>
+
+
+    .containerUser {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .labelUser {
+        font-weight: bold;
+    }
+
+    .buttonUserClass {
+        text-align: center;
+    }
+
+    .buttonUserClass button {
+        width: 150px;
+    }
+</style>
+
+<div class="container" style="margin-top: 15vh;margin-bottom: 15vh;">
+
+    <h1 class="mb-4 text-center">Créer un nouvel utilisateur</h1>
+
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success mt-4">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label labelUser">Email</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.email) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="roles" class="col-sm-2 col-form-label labelUser">Roles</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.roles, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.roles) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="plainPassword" class="col-sm-2 col-form-label labelUser">Mot de passe</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.plainPassword) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="matricule" class="col-sm-2 col-form-label labelUser">Matricule</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.matricule, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.matricule) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="firstname" class="col-sm-2 col-form-label labelUser">Prénom</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.firstname) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="lastname" class="col-sm-2 col-form-label labelUser">Nom</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.lastname) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="activeUser" class="col-sm-2 col-form-label labelUser">Active</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.activeUser, {'attr': {'class': 'form-check-input'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.activeUser) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="phone" class="col-sm-2 col-form-label labelUser">Téléphone</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.phone) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="street" class="col-sm-2 col-form-label labelUser">Rue</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.street, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.street) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="postalCode" class="col-sm-2 col-form-label labelUser">Code postal</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.postalCode, {'attr': {'class': 'form-control'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.postalCode) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="buttonUserClass">
+        <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+    </div>
+
+    {{ form_end(form) }}
+
+    <div class="text-center mt-4">
+        <a href="{{ path('app_user_index') }}" class="btn btn-secondary">Retour</a>
+    </div>
+
+</div>
+{% endblock %}

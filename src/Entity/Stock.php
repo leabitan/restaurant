@@ -38,7 +38,7 @@ class Stock
     public function setQuantitySold(?int $quantitySold): static
     {
         $this->quantitySold = $quantitySold;
-
+        $this->updateQuantityReal();
         return $this;
     }
 
@@ -50,7 +50,7 @@ class Stock
     public function setQuantityPrepared(?int $quantityPrepared): static
     {
         $this->quantityPrepared = $quantityPrepared;
-
+        $this->updateQuantityReal();
         return $this;
     }
 
@@ -59,11 +59,11 @@ class Stock
         return $this->quantityReal;
     }
 
-    public function setQuantityReal(?int $quantityReal): static
+    private function updateQuantityReal(): void
     {
-        $this->quantityReal = $quantityReal;
-
-        return $this;
+        if ($this->quantityPrepared !== null && $this->quantitySold !== null) {
+            $this->quantityReal = $this->quantityPrepared - $this->quantitySold;
+        }
     }
 
     public function getProduct(): ?Product

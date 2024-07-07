@@ -6,6 +6,7 @@ use App\Entity\Booking;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -63,7 +64,16 @@ class BookingType extends AbstractType
                 ]
             )
             ->add('name_booking')
-            ->add('phone_booking')
+            ->add(
+                'phone_booking',
+                TelType::class,
+                [
+                    'attr' => [
+                        'pattern' => '[0-9]{10}',
+                        'title' => 'Le numéro de téléphone doit contenir exactement 10 chiffres.'
+                    ],
+                ]
+            )
             ->add('email_booking')
             ->add('comments');
     }

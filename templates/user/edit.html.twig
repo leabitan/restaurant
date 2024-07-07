@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer utilisateur{% endblock %}
+
+{% block body %}
+<div class="container" style="margin-left:2vw;margin-right:2vw; margin-top: 15vh;margin-bottom: 15vh;">
+    <h1 class="text-center">Editer utilisateur</h1>
+
+    <div class="containerBooking" >
+    {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': true}}) }}
+
+    <div class="mb-3">
+        {{ form_label(form.matricule, 'Matricule', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.matricule, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.matricule, {'attr': {'class': 'invalid-feedback'}}) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.firstname, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.firstname, {'attr': {'class': 'invalid-feedback'}}) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.lastname, 'Prénom', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.lastname, {'attr': {'class': 'invalid-feedback'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_label(form.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.email, {'attr': {'class': 'invalid-feedback'}}) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.roles, 'Roles', {'label_attr': {'class': 'form-label'}}) }}
+        <div class="d-flex align-items-center flex-wrap">
+            {% for role in form.roles %}
+                <div class="form-check form-check-inline me-2">
+                    {{ form_widget(role, {'attr': {'class': 'form-check-input'}}) }}
+                    {{ form_label(role, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                </div>
+            {% endfor %}
+        </div>
+        {{ form_errors(form.roles, {'attr': {'class': 'invalid-feedback'}}) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.plainPassword, 'Mot de passe', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.plainPassword, {'attr': {'class': 'invalid-feedback'}}) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.phone, 'Téléphone', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.phone, {'attr': {'class': 'invalid-feedback'}}) }}
+    </div>
+
+    <div class="mb-3">
+        {{ form_label(form.street, 'Ville', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.street, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.street, {'attr': {'class': 'invalid-feedback'}}) }}
+    </div>
+
+
+    <div class="mb-3">
+        {{ form_label(form.postalCode, 'Code postal', {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget(form.postalCode, {'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.postalCode, {'attr': {'class': 'invalid-feedback'}}) }}
+    </div>
+
+  <div class="mb-3">
+        <label for="activeUser" class="col-sm-2 col-form-label labelUser">Active</label>
+        <div class="col-sm-10">
+            {{ form_widget(form.activeUser, {'attr': {'class': 'form-check-input'}}) }}
+            <div class="form-error">
+                {{ form_errors(form.activeUser) }}
+            </div>
+        </div>
+    </div>
+
+    </div>
+        {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a href="{{ path('app_user_index') }}" class="btn btn-primary" style="background-color: #000000; color: #ffffff; border:none ;">Retour</a>
+
+        {{ include('user/_delete_form.html.twig') }}
+</div>
+{% endblock %}
+
+

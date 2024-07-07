@@ -5,10 +5,13 @@ namespace App\Entity;
 use App\Repository\BookingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Classes\BookingValidator;
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 class Booking
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -18,27 +21,40 @@ class Booking
     private ?\DateTimeInterface $date_booking = null;
 
     #[ORM\Column]
+    #[Assert\NotNull]
     private ?int $peopleNumber = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $bookingConfirmed = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    // #[ORM\Column(type: Types::TIME_MUTABLE)]
+
+
+    #[ORM\Column(type: 'time')]
+    #[Assert\Callback([BookingValidator::class, 'validateBookingHour'])]
     private ?\DateTimeInterface $hour_booking = null;
 
+
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank]
     private ?string $name_booking = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotNull]
     private ?string $phone_booking = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotNull]
+    #[Assert\Email(
+        message: 'Email {{ value }} non valide.',
+    )]
     private ?string $email_booking = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $comments = null;
 
     #[ORM\Column]
+    #[Assert\NotNull]
     private ?bool $diner = null;
 
 

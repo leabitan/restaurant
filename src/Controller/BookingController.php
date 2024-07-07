@@ -12,12 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 #[Route('/booking')]
 class BookingController extends AbstractController
 {
-
-
+    // #[IsGranted('ROLE_EMPLOYEE')]
     #[Route('/', name: 'app_booking_index', methods: ['GET'])]
     public function index(BookingRepository $bookingRepository, Request $request): Response
     {
@@ -78,7 +79,7 @@ class BookingController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_EMPLOYEE')]
     #[Route('/{id}', name: 'app_booking_show', methods: ['GET'])]
     public function show(Booking $booking): Response
     {
@@ -104,7 +105,7 @@ class BookingController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    #[IsGranted('ROLE_EMPLOYEE')]
     #[Route('/{id}', name: 'app_booking_delete', methods: ['POST'])]
     public function delete(Request $request, Booking $booking, EntityManagerInterface $entityManager): Response
     {

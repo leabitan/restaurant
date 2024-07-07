@@ -22,8 +22,9 @@ security:
                 # "app_login" is the name of the route created previously
                 login_path: app_login
                 check_path: app_login
+                enable_csrf: true
 
-                enable_csrf: 
+                
                 
             logout:
                 path: app_logout
@@ -36,9 +37,18 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
+
+
+    role_hierarchy:
+        ROLE_EMPLOYEE: ROLE_USER
+        ROLE_ADMIN: ROLE_EMPLOYEE
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        #- { path: ^/app/login$, roles: PUBLIC_ACCESS }
+        # - { path: ^/product, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/admin-employe, roles: ROLE_EMPLOYEE }  
 
 when@test:
     security:

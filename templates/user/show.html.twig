@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+<div class="container" style="margin-left:2vw;margin-right:2vw; margin-top: 15vh;margin-bottom: 15vh;">
+    <h1>Détail utilisateur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Mot de passe</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Date d'inscription</th>
+                <td>{{ user.inscriptionDate ? user.inscriptionDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Matricule</th>
+                <td>{{ user.matricule }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>utilisateur actif</th>
+                <td>{{ user.activeUser ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Téléphone</th>
+                <td>{{ user.phone }}</td>
+            </tr>
+            <tr>
+                <th>Rue</th>
+                <td>{{ user.street }}</td>
+            </tr>
+            <tr>
+                <th>Code postal</th>
+                <td>{{ user.postalCode }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+<div class="btn-group" role="group" >
+    <a href="{{ path('app_user_index') }}" class="btn btn-dark">Retour</a>
+</div>
+
+    {{ include('user/_delete_form.html.twig') }}
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block body %}
+<div class="container" style="margin-top: 15vh; margin-bottom: 15vh;">
+    {% if orders is not empty %}
+        <h1 class="mb-5 text-center">Liste des commandes</h1>
+
+        <div class="count mt-4">
+            <h4>Il y a {{ orders|length }} commandes enregistrées</h4>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Référence</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Heure</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Quantités</th>
+                    <th scope="col">Produits</th>
+                    <th scope="col">Montant</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr class="table-dark">
+                        <th scope="row">{{ order.reference }}</th>
+                        <td>{{ order.createdAt|date('d/m/Y') }}</td>
+                        <td>{{ order.createdAt|date('H:i') }}</td>
+                        <td>
+                            {% if order.user is not null %}
+                                {{ order.user.firstname }} {{ order.user.lastname }}
+                            {% else %}
+                                Utilisateur inconnu
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% for detail in order.ordersDetails %}
+                                {{ detail.quantity }}<br>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for detail in order.ordersDetails %}
+                                {{ detail.productName }}<br>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% set totalAmount = 0 %}
+                            {% for detail in order.ordersDetails %}
+                                {% set totalAmount = totalAmount + (detail.price * detail.quantity) %}
+                            {% endfor %}
+                            {{ totalAmount|number_format(2, ',', ' ') }} €
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h4>Il n'y a pas de commandes enregistrées</h4>
+    {% endif %}
+</div>
+{% endblock %}

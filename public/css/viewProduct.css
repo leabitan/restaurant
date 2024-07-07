@@ -2,16 +2,15 @@
     margin-top: 10%;
 }
 
+
 .productMenuList {
     margin-bottom: 3%;
-    background-color: #998000;
+    background-color: #ffd500;
     width: 10%;
     text-align: center;
     color: rgb(246, 246, 246) !important;
     border: 1px solid #ffffff;
-    /* Couleur et épaisseur de la bordure */
 
-    /* Espace intérieur pour améliorer l'apparence */
     font-size: 1.5vw;
 
 }
@@ -23,7 +22,7 @@
 }
 
 .productMenuList a {
-    color: rgb(246, 246, 246) !important;
+    color: rgb(0, 0, 0) !important;
     text-decoration: none;
 
 }
@@ -53,8 +52,35 @@
 }
 
 .card-price {
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     font-size: 2vw;
-    color: #998000;
+    color: #EB9D2D;
 
+}
+
+.product-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+    /* Vous pouvez ajuster cette largeur selon vos besoins */
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.product-name:hover::after {
+    content: attr(data-fullname);
+    position: absolute;
+    background: #000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: normal;
+    width: auto;
+    max-width: 300px;
+    /* Ajustez selon vos besoins */
+    z-index: 10;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
 }

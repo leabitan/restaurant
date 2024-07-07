@@ -10,7 +10,12 @@
         <link rel="stylesheet" href="/css/footer.css" />
         <link rel="stylesheet" href="/css/stock.css" />
         <link rel="stylesheet" href="/css/booking.css" />
+        <link rel="stylesheet" href="/css/login.css" />
+        <link rel="stylesheet" href="/css/footer.css" />
+        <link rel="stylesheet" href="/css/admin.css" />
+          <link rel="stylesheet" href="/css/user.css" />
         <link rel="stylesheet" href="/css/viewProduct.css" />
+        <script src="Javascript/navbar.js" defer></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Raleway:wght@300&family=Roboto:wght@100&display=swap" rel="stylesheet">
@@ -26,15 +31,21 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+  
     </head>
     <body>
-
-    {% include 'layout/header.html.twig' %}
-    {% include 'layout/footer.html.twig' %}
+         {% include 'layout/header.html.twig' %}
+ 
+ 
         {% block body %}
         
-        
-        
+  
         {% endblock %}
+      
+        {% if app.request.attributes.get('_route') in ['app_home', 'app_view_product'] %}
+            {% include 'layout/footer.html.twig' %}
+        {% endif %}
+
     </body>
 </html>

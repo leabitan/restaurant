@@ -70,6 +70,7 @@ class Category
     {
         if (!$this->product->contains($product)) {
             $this->product->add($product);
+            $product->addCategory($this);
         }
 
         return $this;
@@ -78,6 +79,7 @@ class Category
     public function removeProduct(Product $product): static
     {
         $this->product->removeElement($product);
+        $product->removeCategory($this);
 
         return $this;
     }

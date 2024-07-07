@@ -1,38 +1,76 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LoginController!{% endblock %}
+{% block title %}connexion{% endblock %}
 
 {% block body %}
- <form action="{{ path('app_login') }}" method="post">
- <div class="align" >
-    <div class="form-outline mb-4">
-        <label for="username">Email:</label>
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        <input type="text" id="username" name="_username" value="{{ last_username }}">
+
+	<style>
+
+
+		body {
+	
+   		background: url('/images/fondFruitsClair.png') no-repeat center center fixed;
+    	background-size: cover;
+    	background-color: rgba(240, 240, 240, 0.2); /* Couleur de fond avec une transparence à 80% */
+		}
+
+    </style>
+
+
+<div class="containerLogin">
+    <div class="row justify-content-center">
+
+        <div class="col-md-6 login-box">
+            <h2>Connexion</h2>
+            
+            {# Display error message if login fails #}
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                       {% if error.messageKey == 'Invalid credentials' %}
+                        Les informations d'identification fournies sont incorrectes.
+                    {% elseif error.messageKey == 'Account is disabled' %}
+                        Votre compte a été désactivé.
+                    {% elseif error.messageKey == 'Account is locked' %}
+                        Votre compte est verrouillé.
+                    {% else %}
+                        {{ error.messageKey|trans(error.messageData, 'security') }}
+                    {% endif %}
+
+                    </div>
+                {% endif %}
+            <form action="{{ path('app_login') }}" method="post">
+                <div class="form-group user-box">
+                    <input type="text" class="form-control" id="email" name="_username" value="{{ last_username }}" required >
+                    <label for="email">Adresse mail</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" id="password" name="_password" required="">
+                    <label for="password">Mot de passe</label>
+                
+                </div>
+
+                <div class="col">
+                <!-- Simple link -->
+                <a href=" {{ path('app_forgot_password_request') }}">Forgot password?</a>
+                </div>
+
+                <div class="col">
+                <a href="{{ path('app_register') }}">Créer un compte</a>
+                </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <div class="text-center">
+                <a href="#"><span></span><span></span><span></span><span></span><button class="login_button" type="submit">Valider</button></a>
+                </div>
+            </form>
+        </div>
+
     </div>
+</div>
 
-    <div class="form-outline mb-4" >
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password">
-    </div>
 
-    <div class="col">
-      <!-- Simple link -->
-      <a href=" {{ path('app_forgot_password_request') }}">Forgot password?</a>
-    </div>
-
-    <div>
-        <p>Not a member? <a href="{{ path('app_register') }}">Créer un compte</a></p>
-    </div>
-        {# If you want to control the URL the user is redirected to on success
-        <input type="hidden" name="_target_path" value="/account"> #}
-
-    <button type="submit" class="btn btn-primary btn-block mb-4"">login</button>
-
-     </div>
-        </form>
 
 
 
 {% endblock %}
+
 
