@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Classes\PasswordComplexity;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -53,8 +54,6 @@ class RegistrationFormType extends AbstractType
                 ], 'label' => 'En créant un compte, vous acceptez les conditions d\'utilisation et de vente de Ventalis',
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
@@ -65,12 +64,13 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Please enter a password',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 10,
                         'minMessage' => 'Veuillez entrer un mot de passe de minimum {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
-                ], 'label' => 'Mot de passe',
+                    new PasswordComplexity(),
+                ],
+                'label' => 'Mot de passe',
             ]);
     }
 

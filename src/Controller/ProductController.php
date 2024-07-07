@@ -121,6 +121,22 @@ class ProductController extends AbstractController
             if ($stock) {
                 $stock->setProduct($product);
             }
+            // Gestion du fichier image
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = uniqid() . '.' . $imageFile->guessExtension();
+
+                // Déplace le fichier dans le répertoire public/images
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+
+                // Met à jour la propriété 'image' pour stocker le chemin de l'image
+                $product->setImage($newFilename);
+            }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_product', [], Response::HTTP_SEE_OTHER);

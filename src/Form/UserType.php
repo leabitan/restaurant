@@ -2,12 +2,14 @@
 
 namespace App\Form;
 
+use App\Classes\PasswordComplexity;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
@@ -28,8 +30,6 @@ class UserType extends AbstractType
                 'expanded' => true, // Display checkboxes for each role
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
@@ -40,19 +40,29 @@ class UserType extends AbstractType
                         'message' => 'Please enter a password',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 10,
                         'minMessage' => 'Veuillez entrer un mot de passe de minimum {{ limit }} caractères',
-                        // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
-                ], 'label' => 'Mot de passe',
+                    new PasswordComplexity(),
+                ],
+                'label' => 'Mot de passe',
             ])
             // ->add('inscriptionDate')
             ->add('matricule')
             ->add('firstname')
             ->add('lastname')
             ->add('activeUser')
-            ->add('phone')
+            ->add(
+                'phone',
+                TelType::class,
+                [
+                    'attr' => [
+                        'pattern' => '[0-9]{10}',
+                        'title' => 'Le numéro de téléphone doit contenir exactement 10 chiffres.'
+                    ],
+                ]
+            )
             ->add('street')
             ->add('postalCode')
             // ->add('cart')

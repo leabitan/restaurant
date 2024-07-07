@@ -61,7 +61,7 @@ class CartController extends AbstractController
         $session->set('cart', $cart);
 
         //On redirige vers la page du cart
-        return $this->redirectToRoute('app_view_product');
+        return $this->redirectToRoute('cart_index');
     }
 
     #[Route('/remove/{id}', name: 'remove')]

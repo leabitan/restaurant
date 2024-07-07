@@ -20,5 +20,11 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\classes\BookingValidator:
+        tags: ['validator.constraint_validator']
+    
+    App\classes\PasswordComplexityValidator:
+        tags: ['validator.constraint_validator']
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
