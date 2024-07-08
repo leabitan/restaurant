@@ -274,3 +274,65 @@ media querry */
         height: 2vh;
     }
 }
+
+/* Media query pour les écrans ayant une largeur maximale de 768 pixels */
+@media screen and (max-width: 768px) {
+
+    .commander,
+    .reserver {
+        width: 30vw;
+        height: 5vh;
+        font-size: 10px;
+
+    }
+
+    .restaurant {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 1rem;
+    }
+
+    .restaurant1,
+    .restaurant2,
+    .restaurant3,
+    .restaurant4 {
+        max-width: 100%;
+        padding: 2%;
+    }
+
+    .restaurant1 {
+        order: 1;
+    }
+
+    .restaurant2 {
+        order: 4;
+    }
+
+    .restaurant3 {
+        order: 2;
+        /* Place cette image après restaurant4 */
+    }
+
+    .restaurant4 {
+        order: 3;
+    }
+
+
+    .r-titre {
+        font-size: 1.5rem;
+    }
+
+    .r-texte {
+        font-size: 1rem;
+    }
+
+    .r-action {
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .texte-slider h1 {
+        font-size: 10px;
+    }
+}

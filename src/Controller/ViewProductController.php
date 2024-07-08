@@ -33,8 +33,8 @@ class ViewProductController extends AbstractController
         }
 
         // Debugging output
-        dump($products);
-        dump($favicon);
+        // dump($products);
+        // dump($favicon);
 
         return $this->render('view_product/index.html.twig', [
             'controller_name' => 'ViewProductController',

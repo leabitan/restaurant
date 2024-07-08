@@ -84,3 +84,98 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+.col-4 {
+    flex: 0 0 33.33%;
+    /* 1/3 de la largeur de l'écran */
+    max-width: 33.33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    width: 30vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+}
+
+@media (max-width: 767.98px) {
+    .col-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .card-img-top {
+        height: 33vh;
+        /* 1/3 de la hauteur de la fenêtre */
+    }
+
+    .card {
+        width: 90vw;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+
+    .blockProduct {
+        margin-top: 10vh;
+    }
+
+    .productMenuList {
+        font-size: 0.5rem;
+        /* Augmente la taille de la police */
+        padding: 1rem 2rem;
+        /* Augmente le padding pour plus d'espace */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        /* Centre le texte */
+    }
+
+    .d-flex {
+        flex-direction: line;
+        align-items: center;
+    }
+
+    .lienCategorie {
+        font-size: 15px;
+    }
+
+    .card-title {
+        font-size: 15px;
+        font-weight: bold;
+
+    }
+
+    .card-text {
+        font-size: 10px;
+    }
+
+    .card-price {
+        font-size: 10px;
+    }
+
+    .btn {
+        font-size: 1.2rem;
+        /* Augmente la taille du texte du bouton */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+}
